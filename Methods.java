@@ -1,4 +1,4 @@
-package academy.learnprogramming;
+package com.kriti.session4;
 
 public class Methods
 {
@@ -9,7 +9,7 @@ public class Methods
         int levelCompleted = 5;
         int bonus = 100;
 
-        calculateScore();
+        calculateScore(true, 800, levelCompleted, bonus);
 
         score = 10000;
         levelCompleted = 8;
@@ -22,12 +22,8 @@ public class Methods
         }
     }
 
-    public static void calculateScore()
+    public static void calculateScore(boolean gameOver, int score, int levelCompleted, int bonus)
     {
-        boolean gameOver = true;
-        int score = 800;
-        int levelCompleted = 5;
-        int bonus = 100;
 
         if(gameOver)
         {
