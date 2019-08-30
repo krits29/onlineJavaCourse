@@ -10,17 +10,17 @@ public class Polymorphism
         System.out.println(mycar.accelerate());
         System.out.println(mycar.brake()+"\n");
 
-        BMW bmw = new BMW(8, "my bmw");
+        Car bmw = new BMW(8, "my bmw");
         System.out.println(bmw.brake());
         System.out.println(bmw.accelerate());
         System.out.println(bmw.startEngine()+"\n");
 
-        Tesla tesla = new Tesla(8, "my tesla");
+        Car tesla = new Tesla(8, "my tesla");
         System.out.println(tesla.brake());
         System.out.println(tesla.accelerate());
         System.out.println(tesla.startEngine()+"\n");
 
-        Audi audi = new Audi(8, "my audi");
+        Car audi = new Audi(8, "my audi");
         System.out.println(audi.brake());
         System.out.println(audi.accelerate());
         System.out.println(audi.startEngine());
