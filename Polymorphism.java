@@ -10,20 +10,20 @@ public class Polymorphism
         System.out.println(mycar.accelerate());
         System.out.println(mycar.brake()+"\n");
 
-        Car bmw = new BMW(8, "my bmw");
-        System.out.println(bmw.brake());
-        System.out.println(bmw.accelerate());
-        System.out.println(bmw.startEngine()+"\n");
+        Car c = new BMW(8, "my bmw");      //new BMW type Car
+        System.out.println(c.brake());
+        System.out.println(c.accelerate());
+        System.out.println(c.startEngine()+"\n");
 
-        Car tesla = new Tesla(8, "my tesla");
-        System.out.println(tesla.brake());
-        System.out.println(tesla.accelerate());
-        System.out.println(tesla.startEngine()+"\n");
+        c = new Tesla(8, "my tesla");     //not doing Tesla t = new Tesla
+        System.out.println(c.brake());    //actually doing  Car c = new Tesla
+        System.out.println(c.accelerate());
+        System.out.println(c.startEngine()+"\n");
 
-        Car audi = new Audi(8, "my audi");
-        System.out.println(audi.brake());
-        System.out.println(audi.accelerate());
-        System.out.println(audi.startEngine());
+        c = new Audi(8, "my audi");
+        System.out.println(c.brake());
+        System.out.println(c.accelerate());
+        System.out.println(c.startEngine());
     }
 }
 
@@ -87,7 +87,7 @@ class BMW extends Car
         return "BMW - accelerate()";
     }
 
-    @Override
+    @Override       // just an annotation because the other method is getting overridden
     public String brake()
     {
         return "BMW - brake";
