@@ -53,6 +53,7 @@ public class ArrayNumberSorter
         boolean go = true;    // while loop will continue until we make it false
         int holder = 0;       // temporary variable
 
+        System.out.println("Sorted from highest to lowest: ");
 
         while(go)
         {
