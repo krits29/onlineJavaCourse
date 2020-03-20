@@ -47,12 +47,12 @@ public class Team<T extends Player> implements Comparable<Team<T>>
         else if (ourScore < theirScore)
         {
             this.losses++;
-            message = " loss ";
+            message = " lost to ";
         }
         else
         {
             this.ties++;
-            message = " tied ";
+            message = " tied with ";
         }
 
         totalGames++;
@@ -66,7 +66,7 @@ public class Team<T extends Player> implements Comparable<Team<T>>
 
     public int ranking()
     {
-        return this.wins - this.losses;
+        return (this.wins * 2) - this.losses + this.ties;
     }
 
     @Override
