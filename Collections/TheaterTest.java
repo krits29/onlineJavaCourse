@@ -35,6 +35,14 @@ public class TheaterTest
         Collections.reverse(reverseSeats);
         printList(reverseSeats);
 
+        List<Theater.Seat> priceSeats = new ArrayList<>(theater.getSeat());
+        priceSeats.add(theater.new Seat("B00", 13.00));
+        priceSeats.add(theater.new Seat("A00", 13.00));
+        Collections.sort(priceSeats, Theater.PRICE_ORDER);
+        printList(priceSeats);
+
+
+
     }
 
     public static void printList(List<Theater.Seat> list)

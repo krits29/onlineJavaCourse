@@ -10,6 +10,33 @@ public class Theater
     //Better way:
     //private Collection<Seat> seats = new LinkedList<>();
 
+    //theres another way to use the sort method by passing it through a comparator
+    //the comparator (similar to comparable) interface defines a single method called compared
+    //dont have to implement comparator
+    //instead an object of type comparator can be created with a compare method that can sort the objects that we are interested in (seat)
+    //more than one can be created
+    //either create a comparator object in existing class or create another class that implements the interface
+
+    static final Comparator<Seat> PRICE_ORDER = new Comparator<Seat>()
+    {
+        @Override
+        public int compare(Seat seat1, Seat seat2)
+        {
+            if(seat1.getPrice() < seat2.getPrice())   //going to sort by the price of the seat
+            {
+                return -1;
+            }
+            else if(seat1.getPrice() > seat2.getPrice())
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    };      //part of the comparator (so theres a semicolon)
+
     public Theater(String theaterName, int numRows, int seatsperRow)
     {
         this.theaterName = theaterName;
