@@ -17,25 +17,30 @@ public class Theater
     //more than one can be created
     //either create a comparator object in existing class or create another class that implements the interface
 
-    static final Comparator<Seat> PRICE_ORDER = new Comparator<Seat>()
+    static final Comparator<Seat> PRICE_ORDER;      //part of the comparator (so theres a semicolon)
+
+    static
     {
-        @Override
-        public int compare(Seat seat1, Seat seat2)
+        PRICE_ORDER = new Comparator<Seat>()
         {
-            if(seat1.getPrice() < seat2.getPrice())   //going to sort by the price of the seat
+            @Override
+            public int compare(Seat seat1, Seat seat2)
             {
-                return -1;
+                if (seat1.getPrice() < seat2.getPrice())   //going to sort by the price of the seat
+                {
+                    return -1;
+                }
+                else if (seat1.getPrice() > seat2.getPrice())
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
             }
-            else if(seat1.getPrice() > seat2.getPrice())
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-    };      //part of the comparator (so theres a semicolon)
+        };
+    }
 
     public Theater(String theaterName, int numRows, int seatsperRow)
     {
