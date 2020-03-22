@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.Scanner;  //necessary to import
 
 public class ReadingUserInputs
 {
