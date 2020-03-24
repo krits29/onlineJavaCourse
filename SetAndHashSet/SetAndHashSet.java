@@ -18,6 +18,7 @@ public class SetAndHashSet
         // cannot retrieve a specific value
         // all unique values
 
+
         HeavenlyBody temp = new HeavenlyBody("Mercury", 188);
         solarSystem.put(temp.getName(), temp);
         planets.add(temp);
@@ -82,6 +83,10 @@ public class SetAndHashSet
         solarSystem.put(temp.getName(), temp);
         planets.add(temp);
 
+        temp = new HeavenlyBody("Pluto", 249);
+        solarSystem.put(temp.getName(), temp);
+        planets.add(temp);
+
         System.out.println("Planets");
         for(HeavenlyBody planet : planets)
         {
@@ -101,11 +106,42 @@ public class SetAndHashSet
             moons.addAll(planet.getSatellites());
         }
 
-        System.out.println("All moons");
+        System.out.println("\nAll moons");
         for (HeavenlyBody moon : moons)
         {
             System.out.println("- " + moon.getName());
         }
+
+        HeavenlyBody pluto = new HeavenlyBody("Pluto", 842);
+        planets.add(pluto);
+
+        for(HeavenlyBody i : planets)
+        {
+            System.out.println(i.getName() + ": " + i.getOrbitalPeriod());
+        }
+
+        // the print out statement:
+//        Pluto: 248.0 -
+//        Mars: 687.0
+//        Pluto: 842.0 -
+//        Venus: 225.0
+//        Neptune: 165.0
+//        Jupiter: 4332.0
+//        Ganymede: 7.1
+//        Earth: 365.0
+//        Uranus: 30660.0
+//        Mercury: 188.0
+        // even though its a set, Pluto appears twice
+        // that because there are two different java objects that do not compare equal
+        // so the set is happy to accept it
+
+        // equals method needs to be overridden
+        // since the base object class from which all other classes are derived just defines a simple eqauls method
+        // which is called referential equality and if both references point to the same object then theyre equal, otherwise not
+
+        Object o = new Object(); //this is the base object that all other objects inherit from
+        o.equals(o);
+        "pluto".equals("");
 
     }
 }
