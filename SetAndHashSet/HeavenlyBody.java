@@ -4,7 +4,7 @@ import java.util.Set;
 /**
  * Created by kritisharma on 3/23/20.
  */
-public abstract class HeavenlyBody
+public class HeavenlyBody
 {
     private final String name;
     private final double orbitalPeriod;
@@ -58,12 +58,15 @@ public abstract class HeavenlyBody
         if(obj instanceof HeavenlyBody)
         {
             HeavenlyBody bodyObject = (HeavenlyBody) obj;
-            if(this.name.equals(bodyObject.getName()))
+            /*if(this.name.equals(bodyObject.getName()))
             {
                 return this.bodyType == bodyObject.getBodyType();
-            }
-        }
+            }*/
 
+            return (this.name.equals(bodyObject.getName()) && this.bodyType == bodyObject.getBodyType());
+
+        }
+        return false;
 //        System.out.println("obj.getClass() is " + obj.getClass());
 //        System.out.println("this.getClass() is " + this.getClass());
 //
@@ -71,8 +74,8 @@ public abstract class HeavenlyBody
 //        {
 //            return false;
 //        }
-        String objName = ((HeavenlyBody) obj).getName();
-        return this.name.equals(objName);
+        //String objName = ((HeavenlyBody) obj).getName();
+        //return this.name.equals(objName);
     }
 
     @Override
