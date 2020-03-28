@@ -58,7 +58,7 @@ public class StockList
     @Override
     public String toString()
     {
-        String str = "\n Stock List\n";
+        String str = "Stock List\n";
         double totalCost = 0.0;
         for(Map.Entry<String, StockItem> item :list.entrySet() )
         {
@@ -66,10 +66,10 @@ public class StockList
             double itemValue = stockItem.getPrice() * stockItem.quantityInStock();
 
             str = str + stockItem + ", There are " + stockItem.quantityInStock() + " in stock.";
-            str = str + "Value of item " + itemValue;
+            str = str + "Value of all the items $" + itemValue + "\n";
             totalCost += itemValue;
         }
 
-        return str + "Total stock value: " + totalCost;
+        return str + "Total stock value: $" + totalCost;
     }
 }
