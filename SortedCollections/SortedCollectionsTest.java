@@ -1,3 +1,5 @@
+import java.util.Map;
+
 /**
  * Created by kritisharma on 3/27/20.
  */
@@ -27,7 +29,7 @@ public class SortedCollectionsTest
 
         System.out.println(stockList);
 
-        for(String s: stockList.Items().keySet())
+        for(String s: stockList.items().keySet())
         {
             System.out.println(s);
         }
@@ -49,15 +51,31 @@ public class SortedCollectionsTest
 
         System.out.println(stockList);
 
+//        foodItem = new StockItem("pen", 0.30); returns an exception error
+//        stockList.Items().put(foodItem.getName(), foodItem);  doesnt work
+
+        stockList.items().get("bagels").adjustStock(1000);  //what? unmodifiable something soething what
+        stockList.get("bagels").adjustStock(-300);       //16.00 or 20.00
+        System.out.println(stockList);
+
+        //saying: there is not problem havin gaccess to the objects
+        //its the collection sitself that is unmodifiable and not the objects within it
+        //the items method lets it to have access to the stocklist class and retrieve individual items
+
+        for(Map.Entry<String, Double> price: stockList.priceList().entrySet()) //providing an unmodifiablble map of names of prices
+        {
+            System.out.println(price.getKey() + " costs " + price.getValue());
+        }
+
     }
 
     public static int sellItem(ShoppingBasket basket, String item, int quantity)
     {
-        //retireive the item form stock list
+        //retrieve the item form stock list
         StockItem stockItem = stockList.get(item); //what?
         if(stockItem == null)
         {
-            //obviously not in the stocklist
+            //obviously not in the stock list
             System.out.println("sorry we dont sell that");
             return 0;
         }
