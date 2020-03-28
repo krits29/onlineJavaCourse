@@ -41,6 +41,10 @@ public class StockItem implements Comparable<StockItem>
 
     public int quantityInStock()
     {
+        if(quantityStock < 0)
+        {
+            return 0;
+        }
         return quantityStock;
     }
 

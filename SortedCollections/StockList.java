@@ -1,5 +1,5 @@
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -11,7 +11,7 @@ public class StockList
 
     public StockList()
     {
-        this.list = new HashMap<>();
+        this.list = new LinkedHashMap<>();  //order specified to the way we entered it
     }
 
     public int addStock(StockItem item)
@@ -41,8 +41,11 @@ public class StockList
             inStock.adjustStock(-quantity);
             return quantity;
         }
-
-        return 0;
+        else
+        {
+            System.out.println("none in stock");
+            return 0;
+        }
     }
 
     public StockItem get(String key)
@@ -66,7 +69,7 @@ public class StockList
             double itemValue = stockItem.getPrice() * stockItem.quantityInStock();
 
             str = str + stockItem + ", There are " + stockItem.quantityInStock() + " in stock.";
-            str = str + "Value of all the items $" + itemValue + "\n";
+            str = str + " Value of all the items $" + itemValue + "\n";
             totalCost += itemValue;
         }
 

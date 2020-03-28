@@ -27,5 +27,45 @@ public class SortedCollectionsTest
 
         System.out.println(stockList);
 
+        for(String s: stockList.Items().keySet())
+        {
+            System.out.println(s);
+        }
+
+        ShoppingBasket myBasket = new ShoppingBasket("Corona Quarantine ");
+        sellItem(myBasket, "bread", 2);
+        System.out.println(myBasket);
+
+        sellItem(myBasket, "bagels", 1);
+        System.out.println(myBasket);
+
+        sellItem(myBasket, "cupcake", 1);
+        System.out.println(myBasket);
+
+        sellItem(myBasket, "eggs", 50);
+        System.out.println(myBasket);
+
+        sellItem(myBasket, "eggs", 1);
+
+        System.out.println(stockList);
+
+    }
+
+    public static int sellItem(ShoppingBasket basket, String item, int quantity)
+    {
+        //retireive the item form stock list
+        StockItem stockItem = stockList.get(item); //what?
+        if(stockItem == null)
+        {
+            //obviously not in the stocklist
+            System.out.println("sorry we dont sell that");
+            return 0;
+        }
+        if(stockList.sellStock(item, quantity) != 0)  //not equal 0 and have a valid quantity
+        {
+            basket.addToBasket(stockItem, quantity);
+            return quantity;
+        }
+        return 0;
     }
 }
