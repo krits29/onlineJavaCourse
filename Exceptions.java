@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -24,12 +25,67 @@ public class Exceptions
         z = getIntEAFP();
         System.out.println("z is " + z);
 
+        System.out.println("____________");
+        //example:
+        try
+        {
+            int result = divide();
+            System.out.println(result);
+        }
+        catch (ArithmeticException e)  // catch(ArithmeticException | NoSuchElementException e)
+        {
+            System.out.println(e.toString());
+            System.out.println("Unable to perform division");
+        }
+
+
+
+    }
+
+    public static int divide()
+    {
+        int x;
+        int y;
+        try
+        {
+            x = getInt();
+            y = getInt();
+            System.out.println("x is " + x);
+            System.out.println("y is " + y);
+            return x / y;
+        }
+        catch (NoSuchElementException e)
+        {
+            throw new NoSuchElementException("unacceptable input");
+        }
+        catch (ArithmeticException e)
+        {
+            throw new ArithmeticException("attempt to divide by 0");
+        }
+//        int x = getInt();
+//        int y = getInt();
+//        System.out.println("x is " + x + " and y is " + y);
+//        return x / y;
     }
 
     public static int getInt()
     {
         Scanner scan = new Scanner(System.in);
-        return scan.nextInt();
+        System.out.println("Enter an int");
+        while(true)
+        {
+            try
+            {
+                return scan.nextInt();
+            }
+            catch (InputMismatchException e)
+            {
+                //go round again. read past the end of the line in the input first
+                scan.nextLine();
+                System.out.println("Please enter a number using the only digits 0 to 9");
+            }
+        }
+        //return scan.nextInt();
     }
 
     public static int getIntLBYL()
@@ -76,7 +132,7 @@ public class Exceptions
 
     public static int divideLBYL(int x, int y)
     {
-        if(y != 0)    //LBYL
+        if(y != 0)
         {
             return x / y;
         }
