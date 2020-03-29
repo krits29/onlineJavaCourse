@@ -35,19 +35,25 @@ public class SortedCollectionsTest
         }
 
         ShoppingBasket myBasket = new ShoppingBasket("Corona Quarantine ");
-        sellItem(myBasket, "bread", 2);
+        reserveItem(myBasket, "bread", 2);
         System.out.println(myBasket);
 
-        sellItem(myBasket, "bagels", 1);
+        reserveItem(myBasket, "bagels", 1);
         System.out.println(myBasket);
 
-        sellItem(myBasket, "cupcake", 1);
+        reserveItem(myBasket, "cupcake", 1);
         System.out.println(myBasket);
 
-        sellItem(myBasket, "eggs", 50);
+        reserveItem(myBasket, "eggs", 50);
         System.out.println(myBasket);
 
-        sellItem(myBasket, "eggs", 1);
+        unreserveItem(myBasket, "eggs", 20);
+        System.out.println(myBasket);
+
+        unreserveItem(myBasket, "butter", 2); //---
+        System.out.println(myBasket);
+
+        reserveItem(myBasket, "eggs", 1);
 
         System.out.println(stockList);
 
@@ -69,14 +75,14 @@ public class SortedCollectionsTest
 
     }
 
-    public static int sellItem(ShoppingBasket basket, String item, int quantity)
+    public static int reserveItem(ShoppingBasket basket, String item, int quantity)
     {
         //retrieve the item form stock list
-        StockItem stockItem = stockList.get(item); //what?
+        StockItem stockItem = stockList.get(item); //this is getting the actual stock item from the availabe stock
         if(stockItem == null)
         {
             //obviously not in the stock list
-            System.out.println("sorry we dont sell that");
+            System.out.println("sorry we don't sell that");
             return 0;
         }
         if(stockList.sellStock(item, quantity) != 0)  //not equal 0 and have a valid quantity
@@ -85,5 +91,10 @@ public class SortedCollectionsTest
             return quantity;
         }
         return 0;
+    }
+
+    public static int unreserveItem(ShoppingBasket basket, String item, int quantity)
+    {
+        return basket.removeFromBasket(stockList.get(item), quantity);
     }
 }

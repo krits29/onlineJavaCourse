@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Map;
 public class StockList
 {
     private final Map<String, StockItem> list;
+    private ArrayList<StockItem> reservedItems;
 
     public StockList()
     {
@@ -53,9 +55,19 @@ public class StockList
         return list.get(key);
     }
 
-    public Map<String, StockItem> Items()
+    public Map<String, StockItem> items()
     {
         return Collections.unmodifiableMap(list);
+    }
+
+    public Map<String, Double> priceList()
+    {
+        Map<String, Double> prices = new LinkedHashMap<>();
+        for(Map.Entry<String, StockItem> i : list.entrySet())
+        {
+            prices.put(i.getKey(), i.getValue().getPrice());
+        }
+        return Collections.unmodifiableMap(prices);
     }
 
     @Override
@@ -68,11 +80,11 @@ public class StockList
             StockItem stockItem = item.getValue();
             double itemValue = stockItem.getPrice() * stockItem.quantityInStock();
 
-            str = str + stockItem + ", There are " + stockItem.quantityInStock() + " in stock.";
-            str = str + " Value of all the items $" + itemValue + "\n";
+            str = str + stockItem + "\n\t\tThere are " + stockItem.quantityInStock() + " in stock.";
+            str = str + "\n\t\tValue of all the items $" + itemValue + "\n";
             totalCost += itemValue;
         }
 
-        return str + "Total stock value: $" + totalCost;
+        return str + "Total stock value: $" + totalCost + "\n";
     }
 }

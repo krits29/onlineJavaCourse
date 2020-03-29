@@ -1,6 +1,6 @@
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by kritisharma on 3/27/20.
@@ -13,18 +13,39 @@ public class ShoppingBasket
     public ShoppingBasket(String name)
     {
         this.name = name;
-        this.list = new HashMap<>(); //why?
+        this.list = new TreeMap<>(); //look?
     }
 
     public int addToBasket(StockItem item, int quantity)
     {
         if((item != null) && (quantity > 0))
         {
-            int inBasket = list.getOrDefault(item, 0);  //check if the specific stock tiem is already in teh basket
+            int inBasket = list.getOrDefault(item, 0);  //check if the specific stock item is already in the basket
             list.put(item, inBasket + quantity);
+            item.setReservedItems(inBasket + quantity);
+            System.out.println("successfully removed");
             return inBasket;
         }
         return 0;
+    }
+
+    public int removeFromBasket(StockItem item, int quantity)
+    {
+        if((list.containsKey(item)) && (quantity < item.getReservedItems()))
+        {
+            list.replace(item, quantity);
+            return item.getReservedItems() - quantity;
+        }
+        else if((list.containsKey(item)) && (quantity == item.getReservedItems()))
+        {
+            list.remove(item);
+            return 0;
+        }
+        else
+        {
+            System.out.println("You cannot unreserve that");
+            return item.getReservedItems();
+        }
     }
 
     public Map<StockItem, Integer> items()
