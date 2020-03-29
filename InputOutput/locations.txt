@@ -1,0 +1,6 @@
+0: You are sitting in the front of a computer learning java
+1: You are inside your bathroom taking a long shower
+2: You are playing tennis in your regular Sunday tennis class
+3: You are taking a test in your AP Chemistry class
+4: You are in the movie theater with your best friends
+5: You are locked in the garage for your bad behavior
