@@ -58,14 +58,14 @@ public class SortedCollectionsTest
         System.out.println(stockList);
 
 //        foodItem = new StockItem("pen", 0.30); returns an exception error
-//        stockList.Items().put(foodItem.getName(), foodItem);  doesnt work
+//        stockList.Items().put(foodItem.getName(), foodItem);  doesn't work
 
-        stockList.items().get("bagels").adjustStock(1000);  //what? unmodifiable something soething what
+        stockList.items().get("bagels").adjustStock(1000);  //what? unmodifiable something something what
         stockList.get("bagels").adjustStock(-300);       //16.00 or 20.00
         System.out.println(stockList);
 
-        //saying: there is not problem havin gaccess to the objects
-        //its the collection sitself that is unmodifiable and not the objects within it
+        //saying: there is not problem having access to the objects
+        //its the collection itself that is unmodifiable and not the objects within it
         //the items method lets it to have access to the stocklist class and retrieve individual items
 
         for(Map.Entry<String, Double> price: stockList.priceList().entrySet()) //providing an unmodifiablble map of names of prices

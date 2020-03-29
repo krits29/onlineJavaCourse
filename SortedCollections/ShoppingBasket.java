@@ -13,7 +13,7 @@ public class ShoppingBasket
     public ShoppingBasket(String name)
     {
         this.name = name;
-        this.list = new TreeMap<>(); //look?
+        this.list = new TreeMap<>();
     }
 
     public int addToBasket(StockItem item, int quantity)
@@ -43,7 +43,7 @@ public class ShoppingBasket
         }
         else
         {
-            System.out.println("You cannot unreserve that");
+            System.out.println("You cannot un-reserve that");
             return item.getReservedItems();
         }
     }
