@@ -19,28 +19,40 @@ public class Scenes implements Map<Integer, Locations>
     public static void main(String[] args)
     throws IOException
     {
-        FileWriter localFile = null;
-        //without try/catch, we'll have an error
-        try
+        try(FileWriter localFile = new FileWriter("locations.txt");  //ensures that the first error is the one thrown back instead of hiding it
+            FileWriter dirFile = new FileWriter("directions.txt"))
         {
-            localFile = new FileWriter("locations.txt");
-            for(Locations i : locations.values())
+            for(Locations loc : locations.values())
             {
-                localFile.write(i.getLocationID() + ": " + i.getDescription() + "\n");
-                //throw new IOException("test exception thrown while writing");
-                //can be helpful for testing, but make sure to delete it
+                localFile.write(loc.getLocationID() + ": " + loc.getDescription() + "\n");
+                for(String dir: loc.getExits().keySet())
+                {
+                    dirFile.write(loc.getLocationID() + ": " + dir + loc.getExits().get(dir) + "\n");
+                }
             }
         }
-        finally   //when something possible could go wrong, it is guaranteed to go into this finally block
-        {
-            System.out.println("finally block");
-            if(localFile != null)
-            {
-                System.out.println("closing");
-                localFile.close();
-            }
-            localFile.close();    //what? 8.45
-        }
+//        FileWriter localFile = null;
+//        //without try/catch, we'll have an error
+//        try
+//        {
+//            localFile = new FileWriter("locations.txt");
+//            for(Locations i : locations.values())
+//            {
+//                localFile.write(i.getLocationID() + ": " + i.getDescription() + "\n");
+//                //throw new IOException("test exception thrown while writing");
+//                //can be helpful for testing, but make sure to delete it
+//            }
+//        }
+//        finally   //when something possible could go wrong, it is guaranteed to go into this finally block
+//        {
+//            System.out.println("finally block");
+//            if(localFile != null)
+//            {
+//                System.out.println("closing");
+//                localFile.close();
+//            }
+//            localFile.close();    //what? 8.45
+//        }
 
     }
 
