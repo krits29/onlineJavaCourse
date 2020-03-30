@@ -17,6 +17,7 @@ public class Scenes implements Map<Integer, Locations>
     // then uses the write method to write data to the file
 
     public static void main(String[] args)
+    throws IOException
     {
         FileWriter localFile = null;
         //without try/catch, we'll have an error
@@ -26,29 +27,19 @@ public class Scenes implements Map<Integer, Locations>
             for(Locations i : locations.values())
             {
                 localFile.write(i.getLocationID() + ": " + i.getDescription() + "\n");
+                //throw new IOException("test exception thrown while writing");
+                //can be helpful for testing, but make sure to delete it
             }
-        }
-        catch(IOException e)
-        {
-            System.out.println("caught it");
-            e.printStackTrace();
         }
         finally   //when something possible could go wrong, it is guaranteed to go into this finally block
         {
             System.out.println("finally block");
-            try
+            if(localFile != null)
             {
-                if(localFile != null)
-                {
-                    System.out.println("closing");
-                    localFile.close();
-                }
-                localFile.close();    //what? 8.45
+                System.out.println("closing");
+                localFile.close();
             }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+            localFile.close();    //what? 8.45
         }
 
     }
