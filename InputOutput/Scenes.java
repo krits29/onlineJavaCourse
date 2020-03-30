@@ -27,12 +27,28 @@ public class Scenes implements Map<Integer, Locations>
             {
                 localFile.write(i.getLocationID() + ": " + i.getDescription() + "\n");
             }
-            localFile.close();
         }
         catch(IOException e)
         {
             System.out.println("caught it");
             e.printStackTrace();
+        }
+        finally   //when something possible could go wrong, it is guaranteed to go into this finally block
+        {
+            System.out.println("finally block");
+            try
+            {
+                if(localFile != null)
+                {
+                    System.out.println("closing");
+                    localFile.close();
+                }
+                localFile.close();    //what? 8.45
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
         }
 
     }
