@@ -45,5 +45,9 @@ public class Locations
         return new HashMap<String, Integer>(exits);  //instead of returning the exits, we can create a new map and pass the exits
     }                                                //just a copy so that it cannot be changed at all
 
+    protected void addExit(String direction, int location)
+    {
+        exits.put(direction, location);
+    }
 
 }

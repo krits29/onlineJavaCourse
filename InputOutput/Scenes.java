@@ -91,6 +91,9 @@ public class Scenes implements Map<Integer, Locations>
         //reading the exits
         try
         {
+            //the file reader is passed to the buffered readers constructor
+            //then the buffered reader itself is passed to the scanners constructores
+            //closing the scanner woudl close the bufferered read as well (look at the doc)
             scan = new Scanner(new BufferedReader(new FileReader("directions.txt")));
             scan.useDelimiter(" - ");
             while(scan.hasNextLine())
@@ -98,7 +101,7 @@ public class Scenes implements Map<Integer, Locations>
                 int loc = scan.nextInt();
                 String direction = scan.next();
                 scan.skip(scan.delimiter());
-                String destinationStr = scan.nextLine();
+                String destinationStr = scan.nextLine(); //theres no delimeter to stop reading , so force i tto stop
                 int destination = Integer.parseInt(destinationStr);
                 System.out.println(loc + ": " + direction + " - " + destination);
                 Locations locations1 = locations.get(loc);
@@ -111,7 +114,7 @@ public class Scenes implements Map<Integer, Locations>
         }
         finally
         {
-            if(scan != null))
+            if(scan != null)
             {
                 scan.close();
             }
