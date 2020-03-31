@@ -1,9 +1,8 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by kritisharma on 3/29/20.
@@ -27,7 +26,7 @@ public class Scenes implements Map<Integer, Locations>
                 localFile.write(loc.getLocationID() + ": " + loc.getDescription() + "\n");
                 for(String dir: loc.getExits().keySet())
                 {
-                    dirFile.write(loc.getLocationID() + ": " + dir + loc.getExits().get(dir) + "\n");
+                    dirFile.write(loc.getLocationID() + " - " + dir + " - " + loc.getExits().get(dir) + "\n");
                 }
             }
         }
@@ -58,6 +57,70 @@ public class Scenes implements Map<Integer, Locations>
 
     static //copy of static data to keep all data consistent
     {
+        //reading file
+
+        Scanner scan = null;
+        try
+        {
+            scan = new Scanner(new FileReader("locations.txt"));  //rather than system.in
+            scan.useDelimiter(": ");   //to tell the scanner that the key information is seperated like that
+            while(scan.hasNextLine())
+            {
+                int loc = scan.nextInt();
+                scan.skip(scan.delimiter()); //its going to skip over the delimeter and continue on to the nxt piece of data
+                String description = scan.nextLine();
+                System.out.println("imported loc: " + loc + " - " + description);
+                Map<String, Integer> tempExit = new HashMap<>();
+                locations.put(loc, new Locations(loc, description, tempExit)); //?? go over
+
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(scan != null)
+            {
+                scan.close();
+            }
+        }
+
+
+        //reading the exits
+        try
+        {
+            scan = new Scanner(new BufferedReader(new FileReader("directions.txt")));
+            scan.useDelimiter(" - ");
+            while(scan.hasNextLine())
+            {
+                int loc = scan.nextInt();
+                String direction = scan.next();
+                scan.skip(scan.delimiter());
+                String destinationStr = scan.nextLine();
+                int destination = Integer.parseInt(destinationStr);
+                System.out.println(loc + ": " + direction + " - " + destination);
+                Locations locations1 = locations.get(loc);
+                locations1.addExit(direction, destination);
+            }
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(scan != null))
+            {
+                scan.close();
+            }
+        }
+
+        //__________________________
+
+        //writing file
+
         //only executed once
         Map<String, Integer> temporaryExit = new HashMap<String, Integer>();
         locations.put(0, new Locations(0, "You are sitting in the front of a computer learning java", temporaryExit));
