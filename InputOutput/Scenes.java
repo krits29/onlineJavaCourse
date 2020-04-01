@@ -21,12 +21,12 @@ public class Scenes implements Map<Integer, Locations>
         try(FileWriter localFile = new FileWriter("locations.txt");  //ensures that the first error is the one thrown back instead of hiding it
             FileWriter dirFile = new FileWriter("directions.txt"))
         {
-            for(Locations loc : locations.values())
+            for(Locations l : locations.values())
             {
-                localFile.write(loc.getLocationID() + ": " + loc.getDescription() + "\n");
-                for(String dir: loc.getExits().keySet())
+                localFile.write(l.getLocationID() + ": " + l.getDescription() + "\n");
+                for(String dir: l.getExits().keySet())
                 {
-                    dirFile.write(loc.getLocationID() + " - " + dir + " - " + loc.getExits().get(dir) + "\n");
+                    dirFile.write(l.getLocationID() + " - " + dir + " - " + l.getExits().get(dir) + "\n");
                 }
             }
         }
@@ -98,14 +98,34 @@ public class Scenes implements Map<Integer, Locations>
             scan.useDelimiter(" - ");
             while(scan.hasNextLine())
             {
-                int loc = scan.nextInt();
+                int locNum1 = scan.nextInt();
                 String direction = scan.next();
                 scan.skip(scan.delimiter());
-                String destinationStr = scan.nextLine(); //theres no delimeter to stop reading , so force i tto stop
-                int destination = Integer.parseInt(destinationStr);
-                System.out.println(loc + ": " + direction + " - " + destination);
-                Locations locations1 = locations.get(loc);
-                locations1.addExit(direction, destination);
+                String direction1 = scan.nextLine(); //theres no delimeter to stop reading , so force i tto stop
+                int destination1 = Integer.parseInt(direction1);
+
+                System.out.println(locNum1 + ": " + direction + " - " + destination1);
+                Locations locations1 = locations.get(locNum1);
+                locations1.addExit(direction, destination1);
+
+                //String.split
+
+                try // had to add this in a try block becuase it wasnt working before
+                {   // but technically it wasnt there before
+                    String input = scan.nextLine();
+                    String[] data = input.split(" - ");  //creates a string array with each filed
+                    int locNum2 = Integer.parseInt(data[0]);
+                    String direction2 = data[1];
+                    int destination2 = Integer.parseInt(data[2]);
+
+                    System.out.println(locNum2 + ": " + direction2 + " - " + destination2);
+                    Locations locations2 = locations.get(locNum2);
+                    locations2.addExit(direction, destination2);
+                }
+                catch(NoSuchElementException e)
+                {
+                    break;
+                }
             }
         }
         catch(IOException e)
