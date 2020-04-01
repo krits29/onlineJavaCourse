@@ -4,3 +4,13 @@
 3: You are taking a test in your AP Chemistry class
 4: You are in the movie theater with your best friends
 5: You are locked in the garage for your bad behavior
+6: You are standing in the rain getting drenched
+7: You are watching your sister as she plays on the playground
+8: You are zoning out on your first drivers lesson
+9: You are stuck outside the house because you forgot to unlatch the door
+10: You are at a dead end
+11: You are standing in line waiting for your name to get called up
+12: You are painting the walls of your college dorm
+13: You are caught in trouble at the principals office
+14: You are stuck at home because of the coronavirus
+15: You are smiling as your parents take a picture of you winning the first place medal
